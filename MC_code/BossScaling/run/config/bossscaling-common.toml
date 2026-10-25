@@ -1,0 +1,35 @@
+
+[boss_scaling]
+	#每多一名玩家，基础生命值的额外比例 (0~20)
+	#Range: 0.0 ~ 20.0
+	healthMultiplierPerPlayer = 0.5
+	#true: 使用全服在线玩家数；false: 使用 Boss 周围64格内的玩家数
+	useGlobalPlayers = true
+	#需要缩放的 Boss 实体注册名列表
+	bossEntityIds = ["minecraft:ender_dragon", "minecraft:wither"]
+	#Boss死亡后是否自动从缩放列表和双倍列表中移除
+	autoRemoveOnDeath = true
+	#指定特定实体的玩家数量倍率，格式: "modid:entity_name:倍率"，例如 "minecraft:wither:2.0"
+	#未列出的实体使用全局 healthMultiplierPerPlayer
+	entitySpecificMultipliers = []
+
+	[boss_scaling.difficulty_multipliers]
+		#Range: 0.1 ~ 100.0
+		easy = 1.0
+		#Range: 0.1 ~ 100.0
+		normal = 1.0
+		#Range: 0.1 ~ 100.0
+		hard = 2.0
+
+	[boss_scaling.loot_scaling]
+		#启用掉落物数量根据附近玩家数翻倍
+		enableLootScaling = true
+		#每多一名附近玩家，掉落物数量额外增加的倍率
+		#Range: 0.0 ~ 10.0
+		lootMultiplierPerPlayer = 0.2
+		#检测附近玩家的范围（半径，格）
+		#Range: 1 ~ 256
+		lootRadius = 64
+		#单独指定哪些实体会受到掉落翻倍影响，留空则所有bossEntityIds列表中的实体都生效
+		lootBossEntityIds = []
+

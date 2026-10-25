@@ -1,0 +1,9 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+
+[[mods]]
+modId = "bossscaling"
+version = "2.2.0"
+displayName = "Boss Scaling"
+description = "Scale boss HP by player count and difficulty, Terraria-style."

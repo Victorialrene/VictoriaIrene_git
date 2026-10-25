@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: bossscaling
+Specification-Vendor: Victorialrene
+Specification-Version: 1
+Implementation-Title: bossscaling
+Implementation-Version: 1.0
+Implementation-Vendor: Victorialrene
+Implementation-Timestamp: 2026-08-03T23:53:12+0800
+
