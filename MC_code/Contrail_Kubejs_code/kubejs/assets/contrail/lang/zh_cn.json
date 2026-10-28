@@ -1,0 +1,20 @@
+{
+    "item.contrail.good_lrene":"呆头羽",
+    "item.contrail.lrene_milk":"野生鸟奶",
+    "item.contrail.amon":"阿蒙_默尔索",
+    "item.contrail.9ifmiyal":"9iFMiyaL",
+    "item.contrail.xiaoranmaster":"王尔德",
+    "item.contrail.no_cell_component_1k":"未完成序列组装的1k ME存储组件",
+    "item.contrail.no_cell_component_4k":"未完成序列组装的4k ME存储组件",
+    "item.contrail.no_cell_component_16k":"未完成序列组装的16k ME存储组件",
+    "item.contrail.no_cell_component_64k":"未完成序列组装的64k ME存储组件",
+    "item.contrail.no_cell_component_256k":"未完成序列组装的256k ME存储组件",
+    "item.contrail.partially_assembled_calculation_processor_press":"未完成序列组装的仿制的运算压印模板",
+    "item.contrail.partially_assembled_engineering_processor_press":"未完成序列组装的仿制的工程压印模板",
+    "item.contrail.partially_assembled_logic_processor_press":"未完成序列组装的仿制的逻辑压印模板",
+    "item.contrail.partially_assembled_sillicon_press":"未完成序列组装的仿制的硅压印模板",
+    "item.contrail.failed_calculation_processor_press":"序列组装失败的仿制的运算压印模板",
+    "item.contrail.failed_engineering_processor_press":"序列组装失败的仿制的工程压印模板",
+    "item.contrail.failed_logic_processor_press":"序列组装失败的仿制的逻辑压印模板",
+    "item.contrail.failed_sillicon_press":"序列组装失败的仿制的硅压印模板"
+}

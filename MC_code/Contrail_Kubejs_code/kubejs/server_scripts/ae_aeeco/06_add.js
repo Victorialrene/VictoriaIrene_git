@@ -1,0 +1,155 @@
+ServerEvents.recipes(event=> {
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:10000,
+        inputItems:[
+            {item:'ae2:logic_processor',count:5},
+            {item:'minecraft:redstone',count:5},
+            {item:'ae2:certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_1k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:10000,
+        inputItems:[
+            {item:'ae2:logic_processor',count:5},
+            {item:'minecraft:redstone',count:5},
+            {item:'ae2:charged_certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_1k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:15000,
+        inputItems:[
+            {item:'ae2:calculation_processor',count:5},
+            {item:'minecraft:redstone',count:5},
+            {item:'ae2:cell_component_1k',count:5},
+            {item:'ae2:certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_4k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:15000,
+        inputItems:[
+            {item:'ae2:calculation_processor',count:5},
+            {item:'minecraft:redstone',count:5},
+            {item:'ae2:cell_component_1k',count:5},
+            {item:'ae2:charged_certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_4k',count:4}
+    })
+
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:20000,
+        inputItems:[
+            {item:'ae2:cell_component_4k',count:5},
+            {item:'ae2:calculation_processor',count:5},
+            {item:'minecraft:glowstone_dust',count:5},
+            {item:'ae2:certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_16k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:20000,
+        inputItems:[
+            {item:'ae2:cell_component_4k',count:5},
+            {item:'ae2:calculation_processor',count:5},
+            {item:'minecraft:glowstone_dust',count:5},
+            {item:'ae2:charged_certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_16k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:25000,
+        inputItems:[
+            {item:'ae2:cell_component_16k',count:5},
+            {item:'minecraft:glowstone_dust',count:5},
+            {item:'ae2:calculation_processor',count:5},
+            {item:'ae2:certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_64k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:25000,
+        inputItems:[
+            {item:'ae2:cell_component_16k',count:5},
+            {item:'minecraft:glowstone_dust',count:5},
+            {item:'ae2:calculation_processor',count:5},
+            {item:'ae2:charged_certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_64k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:35000,
+        inputItems:[
+            {item:'ae2:cell_component_64k',count:5},
+            {item:'ae2:calculation_processor',count:5},
+            {item:'ae2:fluix_dust',count:5},
+            {item:'minecraft:glowstone_dust',count:5},
+            {item:'ae2:certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_256k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:35000,
+        inputItems:[
+            {item:'ae2:cell_component_64k',count:5},
+            {item:'ae2:calculation_processor',count:5},
+            {item:'ae2:fluix_dust',count:5},
+            {item:'minecraft:glowstone_dust',count:5},
+            {item:'ae2:charged_certus_quartz_crystal',count:5}
+        ],
+        itemOutput:{id:'ae2:cell_component_256k',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:25000,
+        inputItems:[
+            {item:'create:cogwheel',count:4},
+            {item:'create:large_cogwheel',count:4},
+            {item:'create:brass_sheet',count:4}
+        ],
+        itemOutput:{id:'create:precision_mechanism',count:1}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:35000,
+        inputItems:[
+            {item:'ae2:fluix_crystal',count:16},
+            {item:'ae2:engineering_processor',count:4},
+            {item:'ae2:smooth_sky_stone_block',count:16}
+        ],
+        itemOutput:{id:'ae2:controller',count:4}
+    })
+
+    event.custom({
+        type:'neoecoae:integrated_working_station',
+        energy:35000,
+        inputItems:[
+            {item:'ae2:engineering_processor',count:8},
+            {item:'ae2:fluix_glass_cable',count:8},
+            {item:'minecraft:iron_ingot',count:16}
+        ],
+        itemOutput:{id:'ae2:drive',count:4}
+    })
+})

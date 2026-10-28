@@ -1,0 +1,11 @@
+ServerEvents.tags('item',event => {
+    event.add('kubejs:incompleted','contrail:no_cell_component_1k')
+    event.add('kubejs:incompleted','contrail:no_cell_component_4k')
+    event.add('kubejs:incompleted','contrail:no_cell_component_16k')
+    event.add('kubejs:incompleted','contrail:no_cell_component_64k')
+    event.add('kubejs:incompleted','contrail:no_cell_component_256k')
+    event.add('kubejs:incompleted','contrail:partially_assembled_calculation_processor_press')
+    event.add('kubejs:incompleted','contrail:partially_assembled_engineering_processor_press')
+    event.add('kubejs:incompleted','contrail:partially_assembled_logic_processor_press')
+    event.add('kubejs:incompleted','contrail:partially_assembled_sillicon_press')
+})
