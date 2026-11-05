@@ -50,6 +50,17 @@ ServerEvents.recipes(event => {
         C:'minecraft:redstone'
     })
 
+    event.shapeless('mekanism:block_tin',Item.of('contrail:tin_ingot',9))
+    event.shapeless(Item.of('contrail:tin_ingot',9),'mekanism:block_tin')
+    event.shapeless('contrail:mithril_ingot',Item.of('contrail:mithril_nugget',9))
+    event.shapeless(Item.of('contrail:mithril_nugget',9),'contrail:mithril_ingot')
+    event.shapeless('contrail:bronze_ingot',Item.of('contrail:bronze_nugget',9))
+    event.shapeless(Item.of('contrail:bronze_nugget',9),'contrail:bronze_ingot')
+    event.shapeless('contrail:steel_ingot',Item.of('contrail:steel_nugget',9))
+    event.shapeless(Item.of('contrail:steel_nugget',9),'contrail:steel_ingot')
+    event.shapeless('contrail:tin_ingot',Item.of('contrail:tin_nugget',9))
+    event.shapeless(Item.of('contrail:tin_nugget',9),'contrail:tin_ingot')
+
     event.recipes.create.mixing(
         'minecraft:amethyst_block',
         [
@@ -57,7 +68,38 @@ ServerEvents.recipes(event => {
             'minecraft:granite'
         ]
     )
+    
 //搅拌合成
+//Create
+
+    event.recipes.create.mixing(
+        'contrail:steel_ingot',
+        [
+            Ingredient.of('minecraft:iron_ingot',2),
+            Ingredient.of('minecraft:coal')
+        ]
+    ).heated()
+
+    event.recipes.create.mixing(
+        'contrail:mithril_ingot',
+        [
+            Fluid.of('minecraft:lava',500),
+            Ingredient.of('create:experience_nugget',4),
+            Ingredient.of(['contrail:steel_ingot','createbigcannons:steel_ingot','mekanism:ingot_steel']),
+            Ingredient.of('contrail:bronze_ingot'),
+            Ingredient.of('contrail:chromatic_compound')
+        ]
+    ).superheated()
+
+    event.recipes.create.mixing(
+        'contrail:bronze_ingot',
+        [
+            Ingredient.of('minecraft:copper_ingot',3),
+            Ingredient.of(['contrail:tin_ingot','mekanism:ingot_tin']),
+            Ingredient.of('create:zinc_ingot')
+        ]
+    ).superheated()
+
 //Farmer's Delight
     event.recipes.create.mixing(
         'farmersdelight:cooked_rice',

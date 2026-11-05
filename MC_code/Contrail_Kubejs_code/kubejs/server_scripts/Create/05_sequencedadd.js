@@ -1,4 +1,5 @@
 ServerEvents.recipes(event => {
+//AE
   const incomplete_1k = 'contrail:no_cell_component_1k'
 
   event.recipes.create.sequenced_assembly(
@@ -165,7 +166,7 @@ ServerEvents.recipes(event => {
   .transitionalItem(incomplete_256k)
   .loops(2)
 
-  const calculation_processor_press = 'contrail:partially_assembled_calculation_processor_press'
+  const calculation_processor_press = 'contrail:incomplete_calculation_processor_press'
 
   event.recipes.create.sequenced_assembly(
     [
@@ -183,7 +184,7 @@ ServerEvents.recipes(event => {
   .transitionalItem(calculation_processor_press)
   .loops(3)
 
-  const engineering_processor_press = 'contrail:partially_assembled_engineering_processor_press'
+  const engineering_processor_press = 'contrail:incomplete_engineering_processor_press'
 
   event.recipes.create.sequenced_assembly(
     [
@@ -201,7 +202,7 @@ ServerEvents.recipes(event => {
   .transitionalItem(engineering_processor_press)
   .loops(3)
 
-  const logic_processor_press = 'contrail:partially_assembled_logic_processor_press'
+  const logic_processor_press = 'contrail:incomplete_logic_processor_press'
 
   event.recipes.create.sequenced_assembly(
     [
@@ -219,7 +220,7 @@ ServerEvents.recipes(event => {
   .transitionalItem(logic_processor_press)
   .loops(3)
 
-  const silicon_press = 'contrail:partially_assembled_sillicon_press'
+  const silicon_press = 'contrail:incomplete_sillicon_press'
 
   event.recipes.create.sequenced_assembly(
     [
@@ -235,5 +236,118 @@ ServerEvents.recipes(event => {
     ]
   )
   .transitionalItem(silicon_press)
+  .loops(3)
+
+//Create
+
+  const integrated_circuit = 'contrail:incomplete_integrated_circuit'
+
+  event.recipes.create.sequenced_assembly(
+    [
+      CreateItem.of('contrail:integrated_circuit',0.95),
+      CreateItem.of('create:crafter_slot_cover',0.05)
+    ],
+    'contrail:lapis_sheet',
+    [
+      event.recipes.create.deploying(integrated_circuit,[integrated_circuit,'minecraft:redstone']),
+      event.recipes.create.deploying(integrated_circuit,[integrated_circuit,'minecraft:quartz']),
+      event.recipes.create.deploying(integrated_circuit,[integrated_circuit,'create:brass_nugget'])
+    ]
+  )
+  .transitionalItem(integrated_circuit)
+  .loops(5)
+
+  const integrated_mechanism = 'contrail:incomplete_integrated_mechanism'
+
+  event.recipes.create.sequenced_assembly(
+    [
+      CreateItem.of('contrail:integrated_mechanism',0.85),
+      CreateItem.of('create:nixie_tube',0.10),
+      CreateItem.of('create:sequenced_gearshift',0.05)
+    ],
+    'create:brass_sheet',
+    [
+      event.recipes.create.deploying(integrated_mechanism,[integrated_mechanism,'contrail:integrated_circuit']),
+      event.recipes.create.deploying(integrated_mechanism,[integrated_mechanism,'create:cogwheel']),
+      event.recipes.create.deploying(integrated_mechanism,[integrated_mechanism,'create:electron_tube'])
+    ]
+  )
+  .transitionalItem(integrated_mechanism)
+  .loops(5)
+
+  const calculation_mechanism = 'contrail:incomplete_calculation_mechanism'
+
+  event.recipes.create.sequenced_assembly(
+    [
+      CreateItem.of('contrail:calculation_mechanism',0.85),
+      CreateItem.of('electroenergetics:connector',0.10),
+      CreateItem.of('simulated:iron_handle',0.05)
+    ],
+    'contrail:tin_sheet',
+    [
+      event.recipes.create.deploying(calculation_mechanism,[calculation_mechanism,'contrail:integrated_circuit']),
+      event.recipes.create.deploying(calculation_mechanism,[calculation_mechanism,'create:cogwheel']),
+      event.recipes.create.deploying(calculation_mechanism,[calculation_mechanism,'create:copper_nugget']),
+      event.recipes.create.deploying(calculation_mechanism,[calculation_mechanism,'minecraft:iron_nugget'])
+    ]
+  )
+  .transitionalItem(calculation_mechanism)
+  .loops(3)
+
+  const inductive_mechanism = 'contrail:incomplete_inductive_mechanism'
+
+  event.recipes.create.sequenced_assembly(
+    [
+      CreateItem.of('contrail:inductive_mechanism',0.85),
+      CreateItem.of('create:andesite_alloy',0.10),
+      CreateItem.of('createdieselgenerators:engine_piston',0.05)
+    ],
+    'contrail:zinc_sheet',
+    [
+      event.recipes.create.deploying(inductive_mechanism,[inductive_mechanism,'create:cogwheel']),
+      event.recipes.create.deploying(inductive_mechanism,[inductive_mechanism,'create:cogwheel']),
+      event.recipes.create.deploying(inductive_mechanism,[inductive_mechanism,'create:zinc_nugget']),
+      event.recipes.create.deploying(inductive_mechanism,[inductive_mechanism,'minecraft:slime_ball'])
+    ]
+  )
+  .transitionalItem(inductive_mechanism)
+  .loops(3)
+
+  const infernal_mechanism = 'contrail:incomplete_infernal_mechanism'
+
+  event.recipes.create.sequenced_assembly(
+    [
+      CreateItem.of('contrail:infernal_mechanism',0.85),
+      CreateItem.of('minecraft:coal',0.10),
+      CreateItem.of('contrail:steel_nugget',0.05)
+    ],
+    'contrail:steel_sheet',
+    [
+      event.recipes.create.deploying(infernal_mechanism,[infernal_mechanism,'create:cogwheel']),
+      event.recipes.create.deploying(infernal_mechanism,[infernal_mechanism,'contrail:ember_alloy']),
+      event.recipes.create.deploying(infernal_mechanism,[infernal_mechanism,'create:zinc_nugget']),
+      event.recipes.create.filling(infernal_mechanism,[infernal_mechanism,Fluid.of('minecraft:lava',500)])
+    ]
+  )
+  .transitionalItem(infernal_mechanism)
+  .loops(4)
+
+  const sealed_mechanism = 'contrail:incomplete_sealed_mechanism'
+
+  event.recipes.create.sequenced_assembly(
+    [
+      CreateItem.of('contrail:sealed_mechanism',0.85),
+      CreateItem.of('minecraft:dried_kelp_block',0.10),
+      CreateItem.of('create:copper_nugget',0.05)
+    ],
+    'create:belt_connector',
+    [
+      event.recipes.create.deploying(sealed_mechanism,[sealed_mechanism,'create:cogwheel']),
+      event.recipes.create.deploying(sealed_mechanism,[sealed_mechanism,'minecraft:dried_kelp']),
+      event.recipes.create.deploying(sealed_mechanism,[sealed_mechanism,'create:copper_sheet']),
+      event.recipes.create.deploying(sealed_mechanism,[sealed_mechanism,'minecraft:glass'])
+    ]
+  )
+  .transitionalItem(sealed_mechanism)
   .loops(3)
 })
