@@ -152,29 +152,4 @@ ServerEvents.recipes(event=> {
         ],
         itemOutput:{id:'ae2:drive',count:4}
     })
-//工作台合成
-    event.shaped(Item.of('computercraft:pocket_computer_advanced',1),[
-        'AAA',
-        'BCB',
-        'DEF'
-    ],{
-        A:'mekanism:hdpe_sheet',
-        B:'mekanism:ultimate_control_circuit',
-        C:'ae2:engineering_processor',
-        D:'mekanism:network_reader[mekanism:energy={energy_containers:[L;60000L]}]',
-        E:'mekanism:energy_tablet[mekanism:energy={energy_containers:[L;1000000L]}]',
-        F:'mekanism:dictionary'
-    });
-
-    event.shaped(Item.of('computercraft:pocket_computer_normal',1),[
-        'AAA',
-        'BCB',
-        'DED'
-    ],{
-        A:'minecraft:iron_ingot',
-        B:'mekanism:advanced_control_circuit',
-        C:'ae2:engineering_processor',
-        D:'mekanism:ingot_osmium',
-        E:'mekanism:energy_tablet[mekanism:energy={energy_containers:[L;1000000L]}]'
-    });
 })

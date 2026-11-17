@@ -238,8 +238,6 @@ ServerEvents.recipes(event => {
   .transitionalItem(silicon_press)
   .loops(3)
 
-//Create
-
   const integrated_circuit = 'contrail:incomplete_integrated_circuit'
 
   event.recipes.create.sequenced_assembly(

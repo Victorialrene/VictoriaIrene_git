@@ -4,6 +4,7 @@
     "item.contrail.amon":"阿蒙_默尔索",
     "item.contrail.9ifmiyal":"9iFMiyaL",
     "item.contrail.xiaoranmaster":"王尔德",
+    "item.contrail:vigilius":"Vigilius",
     "item.contrail.no_cell_component_1k":"1k ME存储组件（半成品）",
     "item.contrail.no_cell_component_4k":"4k ME存储组件（半成品）",
     "item.contrail.no_cell_component_16k":"16k ME存储组件（半成品）",
@@ -48,5 +49,13 @@
     "item.contrail.sealed_mechanism":"密封构件",
     "item.contrail.spectral_ruby":"光灵红宝石",
     "item.contrail.polished_spectral_ruby":"磨制光灵红宝石",
-    "item.contrail.chromatic_compound":"异彩化合物"
+    "item.contrail.chromatic_compound":"异彩化合物",
+    "item.contrail.shadow_steel":"虚空钢",
+    "item.contrail.shadow_steel_sheet":"虚空钢板",
+    "item.contrail.fined_rediance":"光辉石",
+    "item.contrail.refined_radiance_sheet":"光辉石板",
+    "item.contrail.fallen_stargaze_singularity":"堕落星空奇点",
+    "item.contrail.stargaze_singularity":"星空奇点",
+    "item.contrail.blaze_gold":"炽焰金",
+    "item.contrail.blaze_brass_sheet":"炽焰板"
 }

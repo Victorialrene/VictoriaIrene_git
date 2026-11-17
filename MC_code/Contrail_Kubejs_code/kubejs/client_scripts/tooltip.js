@@ -30,4 +30,9 @@ ItemEvents.modifyTooltips(event=>{
         Text.of("水   牛"),
         Text.of("§6§oMCID:xiaoranmaster")
     ])
+
+    event.add("contrail:vigilius",[
+        Text.of("§5§o谢鸣名单~"),
+        Text.of("§6§oMCID:Vigilius")
+    ])
 })

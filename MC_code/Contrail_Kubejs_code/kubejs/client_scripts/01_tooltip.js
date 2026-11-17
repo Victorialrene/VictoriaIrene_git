@@ -150,6 +150,8 @@ ItemEvents.modifyTooltips(event =>{
     event.add("",[
         Text.of("")
     ])
+//Create:contrail
+
 //航空学
     event.add("simulated:physics_assembler",Text.of("§6欢迎来到航空学！"))
     event.add("simulated:auger_cog",Text.of("§6赞美阿基米德！"))
