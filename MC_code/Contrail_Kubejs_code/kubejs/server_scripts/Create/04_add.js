@@ -232,6 +232,18 @@ ServerEvents.recipes(event => {
         C:'create:precision_mechanism'
     })
 
+    event.shaped(Item.of('create:pulse_timer',1),[
+        ' A ',
+        'BCD',
+        'EEE'
+    ],{
+        A:'create:brass_sheet',
+        B:'minecraft:amethyst_shard',
+        C:'contrail:integrated_circuit',
+        D:'minecraft:redstone_torch',
+        E:'minecraft:stone'
+    })
+
     event.shaped(Item.of('create_connected:overstress_clutch',1),[
         'AB ',
         'CD ',
@@ -433,6 +445,20 @@ ServerEvents.recipes(event => {
         ]
     ).heated()
 //动力合成
+//Create
+    event.recipes.create.mechanical_crafting(Item.of('simulated:docking_connector',2),[
+        'ABA',
+        ' B ',
+        'CDC',
+        'EFE'
+    ],{
+        A:'create:iron_sheet',
+        B:'create:chute',
+        C:'minecraft:piston',
+        D:'create:brass_casing',
+        E:'create:brass_sheet',
+        F:'contrail:integrated_mechanism'
+    })
 //Mek
     event.recipes.create.mechanical_crafting('mekanism:digital_miner',[
         'ABCBA',
