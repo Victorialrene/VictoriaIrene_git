@@ -1,71 +1,467 @@
 // ============================================================
-//  Shift 查看更多描述 (Shift Tooltip)
 //  效果:
-//   - 普通描述 (base): 始终显示, 无需按 Shift
-//   - 提示行  (hint): 未按 Shift 时显示
-//   - 详细描述 (desc): 按住 Shift 后追加显示
+//   - 普通描述 (base): 始终显示, 无需按键
+//   - Shift 提示 (shiftHint): 未按 Shift 时显示
+//   - Ctrl 提示 (ctrlHint): 未按 Ctrl 时显示
+//   - Shift 详情 (desc): 按住 Shift 后追加显示
+//   - Ctrl 详情 (ctrlDesc, 可选): 按住 Ctrl 后追加显示
+//   按住 Shift+Ctrl 时: 两段详情同时显示, 两段提示同时隐藏
+//
+//  颜色写法 (任选):
+//  1) § 代码: '§6金色 §a绿色 §b青色 §d粉色 §e黄色 §c红色'
+//     §0黑 §1深蓝 §2深绿 §3深青 §4深红 §5深紫 §6金 §7灰
+//     §8深灰 §9蓝 §a绿 §b青 §c红 §d粉 §e黄 §f白
+//     §l粗体 §o斜体 §n下划线 §m删除线 §k乱码 §r重置
+//  2) 静态颜色: Text.gold('文字') / Text.red / Text.aqua / Text.green ...
+//  3) 链式方法: Text.of('文字').gold().bold().italic(false)
+//  4) 自定义色: Text.of('文字').color(Color.of('#FFAA00'))
+//  5) 一行混色: Text.of('按 ').append(Text.yellow('Shift')).append(' 查看更多信息')
 // ============================================================
 
 // ---------- 在这里添加需要描述的物品 ----------
 // items: 物品 ID / 物品标签 / '*' (全部物品, 慎用)
-// base : 普通描述, 任何时候都显示 (字符串或字符串数组)
-// hint : 未按 Shift 时显示的提示
-// desc : 按住 Shift 后追加显示的描述, 数组内每一项为一行
+// base : 普通描述, 任何时候都显示 (字符串或文本组件)
+// shiftHint : 未按 Shift 时显示的提示 (不写则用默认值)
+// ctrlHint  : 未按 Ctrl 时显示的提示 (不写则用默认值)
+// desc     : 按住 Shift 后追加显示的描述, 数组内每一项为一行
+// ctrlDesc : 按住 Ctrl 后追加显示的描述, 可选, 不写则 Ctrl 无额外内容
 const SHIFT_TOOLTIPS = [
+    //Minecraft
+    {
+        items: 'minecraft:iron_ingot',
+        base: '我有20铁你怕不怕！'
+    },
+    {
+        items: 'minecraft:redstone',
+        base: '雷石东'
+    },
+    {
+        items: 'minecraft:redstone_block',
+        base: '雷石东块'
+    },
+    {
+        items: 'minecraft:repeater',
+        base: '雷石东直放站'
+    },
+    {
+        items: 'minecraft:conduit',
+        base: '导管'
+    },
+    {
+        items: 'minecraft:lightning_rod',
+        base: '雷霆之杖'
+    },
+    //Create
+    {
+        items: 'create:crushed_raw_iron',
+        base: '§6除了粉碎原矿，也可以通过粉碎§e绯红岩§6获得'
+    },
+    {
+        items: 'create:crushed_raw_gold',
+        base: '§6除了粉碎原矿，也可以通过粉碎§e赭金砂§6获得'
+    },
+    {
+        items: 'create:crushed_raw_copper',
+        base: '§6除了粉碎原矿，也可以通过粉碎§e辉绿岩§6获得'
+    },
+    {
+        items: 'create:crushed_raw_zinc',
+        base: '§6除了粉碎原矿，也可以通过粉碎§e皓蓝石§6获得'
+    },
+    {
+        items: 'create:crushing_wheel',
+        base: '§4如果不小心掉入粉碎轮，最好祈祷他转速不够能跳出来'
+    },
+    {
+        items: 'create:polished_rose_quartz',
+        base: '§6亮晶晶的，拥有不错的导电性'
+    },
+    {
+        items: 'create:rose_quartz',
+        base: '§5玫瑰石英没有加工的半成品原料，因为在紫水晶基底上涂上了红石粉，拥有不错的导电性'
+    },
+    {
+        items: 'create:basin',
+        base: '“某个鲸鱼娘似乎很喜欢把它扣在头上，还说着什么大白饭”'
+    },
+    {
+        items: 'create:creative_motor',
+        base: '§5喂！，你能拿到我说明你是开了创造的！，你这个可恶的骇客！！！'
+    },
+    {
+        items: 'create:creative_crate',
+        base: '§5喂！，你能拿到我说明你是开了创造的！，你这个可恶的骇客！！！'
+    },
+    {
+        items: 'create:creative_blaze_cake',
+        base: '§5喂！，你能拿到我说明你是开了创造的！，你这个可恶的骇客！！！'
+    },
+    {
+        items: 'create:creative_fluid_tank',
+        base: '§5喂！，你能拿到我说明你是开了创造的！，你这个可恶的骇客！！！'
+    },
+    {
+        items: 'create:handheld_worldshaper',
+        base: '§5喂！，你能拿到我说明你是开了创造的！，你这个可恶的骇客！！！'
+    },
+    {
+        items: 'create:water_wheel',
+        base: '§5没看懂'
+    },
+    {
+        items: 'create:hand_crank',
+        base: '§6i狐TV'
+    },
+    {
+        items: 'create:copper_diving_helmet',
+        base: '§5我从海底出击！'
+    },
+    {
+        items: 'create:copper_diving_boots',
+        base: '§5我从海底出击！'
+    },
+    {
+        items: 'create:netherite_diving_helmet',
+        base: [
+            '§5我从海底出击！',
+            '§5也可在§6岩浆§5出击！'
+        ]
+    },
+    {
+        items: 'create:netherite_diving_boots',
+        base: [
+            '§5我从海底出击！',
+            '§5也可在§6岩浆§5出击！'
+        ]
+    },
+    {
+        items: 'create:mechanical_press',
+        base: '§6加工掉落物或传送带 / 置物台上的物品的配方',
+        desc: [
+            '§6锵！'
+        ]
+    },
     {
         items: 'create:cogwheel',
         base: '§5§o工业动力的木之骨骼',
-        hint: '按 Shift 查看更多信息',
         desc: [
             '§5§o“一切机械动力设备的发端，这是天才般的力量传动装置，它就是齿轮。”'
         ]
     },
     {
-        items: 'minecraft:netherite_ingot',
-        base: '由远古残骸提炼而成的顶级材料',
-        hint: '按 Shift 查看更多信息',
+        items: 'create:large_cogwheel',
+        base: '§5§o工业动力的木之骨骼',
         desc: [
-            '由下界合金碎片与金锭合成',
-            '在锻造台可将钻石装备升级为下界合金装备',
-            '下界合金装备不会被火焰烧毁'
+            '§5§o“一切机械动力设备的发端，这是天才般的力量传动装置，它就是齿轮。”'
         ]
     },
     {
-        items: 'minecraft:elytra',
-        base: '可以让你在天空中滑翔的翅膀',
-        hint: '按 Shift 查看更多信息',
+        items: 'create:wrench',
+        base: '§6§o手执扳手，即可调节整个世界！',
         desc: [
-            '装备在胸甲栏, 高空下落时按跳跃键滑翔',
-            '可使用幻翼膜修复耐久'
+            '§6进入施工现场，必须戴好护目镜',
+            '§6扳手的发明原因是工程师们早就厌恶了需要面朝不一样的方向才能把机械的朝向放对的现象了',
+            '§5也可以用来改变机械的方向和快捷拆卸机械'
+        ],
+        ctrlDesc: '§5被特殊材料制作且强化的扳手，拿来敲别人的头似乎效果不错'
+    },
+    {
+        items: 'create:goggles',
+        base: '§5工程师们佩戴的精细眼镜',
+        desc: [
+            '§6工程师护目镜可以戴在头上使用,来查看机械动力元件的各项数据',
+            '§6查看动力元件§5应力§6消耗数，即§5应力§6影响；',
+            '§6查看动力源§5应力§6产出数，即§5应力§6量；',
+            '§6查看 §5溜槽§6 和 §5隧道§6 内的物品；',
+            '§6查看流体元件中流体的§5具体信息。'
+        ],
+        ctrlDesc: [
+            '§6镜片被黄铜和上好的皮革所固定，镜片被打磨的透亮且光滑，可以看到机械的具体信息',
+            '§6“来自一名叫做艾琳§m§7（呆头羽）§6的工程师的案例”',
+            '§6“她在尝试制作一个工作站的时候，把齿轮们的转速调的太大，造成齿轮碎裂”',
+            '§6“导致齿轮们的碎片像哈气的哈基米一样吸附到了艾琳的脸上”',
+            '§6“自此之后，所有的工程师在制造一些机器的时候都不约而同的开始佩戴护目镜”',
+            '§5可以减小这样的意外对工程师的伤害'
         ]
     },
     {
-        items: 'minecraft:totem_of_undying',
-        base: '能够救你一命的护身符',
-        hint: '按 Shift 查看更多信息',
+        items: 'create:track',
+        base: '§4§o新轨距!,人民铁路为人民！',
         desc: [
-            '手持或放在副手时, 可抵挡一次致命伤害',
-            '触发后恢复生命并清除部分负面效果',
-            '由唤魔者掉落'
+            '§6默认情况下列车轨道最多一次性铺设§532格',
+            '§6列车轨道 可以穿过下界传送门，在下界传送门前放置列车轨道时，会尝试在另一维度的传送门前创建成对的列车轨道。',
+            '§6这使得列车结构可以在§5主世界§6与§5下界§6之间自由穿越。'
         ]
     },
-    // 使用标签的例子 (本文件位于 server_scripts, 标签可用):
-    // {
-    //     items: '#minecraft:beacon_payment_items',
-    //     base: '信标的燃料',
-    //     hint: '按 Shift 查看更多信息',
-    //     desc: ['可以用来激活信标']
-    // }
+    {
+        items: 'create:mechanical_saw',
+        base: '可以用于砍树，也可以用于切割物品。',
+        desc: [
+            '§4高速旋转机械!',
+            '§4请不要站在上面或者无防护近距离接触！',
+            '§4“小心变成2.5份！！！,低转速也不行！！！”'
+        ]
+    },
+    {
+        items: 'create:mechanical_drill',
+        base: '§6动力钻头是一种常用于破坏方块和玩家（？）的动力元件',
+        desc: [
+            '§5“我的钻头可是钻破天际的口牙！”'
+        ]
+    },
+    {
+        items: 'create:deployer',
+        base: '§6使用机械假手和精密构件制作的动力机械手，你可以在它的手中放入一些东西',
+        desc: [
+            '§5它可以像玩家一样来灵活地使用手中的§6物品§5，或者§6武器',
+            '§5使用了这个机械你就可以悟出一个道理'
+        ],
+        ctrlDesc: [
+            '',
+            '§5§o“在身后捅你的未必是群U，也有可能是一个机械手QAQ”————某一名呆头羽的留言'
+        ]
+    },
+    {
+        items: 'create:large_water_wheel',
+        base: '§5《水车河仙人》'
+    },
+    {
+        items: 'create:depot',
+        base: '§6置物台是一种常用的物流元件（相当于一个静止的传送带），主要用于暂存少量物品、存放被加工物品等。',
+        desc: [
+            '§5§o存入行为：§6玩家手持物品右击置物台顶面可将其存放在置物台上。当置物台为空且上方存在掉落物实体时，置物台会吸收该物品并存入 heldItem。',
+            '§6置物台的所有面都可存入物品（如果物流原件支持，且 heldItem 和 outputBuffer 均为空）。存入行为只能存入 heldItem， outputBuffer 不可存入。',
+            '',
+            '§5§o取出行为：§6玩家空手右键置物台顶面可将置物台上的物品取出并存入背包（ heldItem 和 outputBuffer 均可取出，如果背包存放不下则会丢出去）。',
+            '§6置物台的所有面都可取出物品（如果物流原件支持）',
+            '',
+            '§5§o物品交换行为：§6如果玩家手上有物品，置物台上也有物品，右键置物台顶面则将玩家手上的物品存入置物台，之前置物台上的物品存入玩家快捷栏（和交换物品之前的槽位相同）。',
+            '',
+            '§5§o配方处理行为：§6只有在 heldItem 中的物品可被加工，如果在 outputBuffer 中则不会加工。'
+        ],
+        ctrlDesc: [
+            '§6大多数的机械加工都在这个上面进行',
+            '§5“台子的材质使用了安山合金，相比于其他的东西它更耐用”'
+        ]
+    },
+    {
+        items: 'create:millstone',
+        base: '§6一种能够研磨物品的作业元件。',
+        desc: [
+            '§5§o物品加工：§6用来执行“研磨”类的配方，即除了矿物粉碎配方外的粉碎配方。',
+            '',
+            '§5§o原料输入输出：§6原料可以从上方手动投入石磨中，成品可以通过空手右击石磨取出。石磨中若无成品，空手右击石磨可取出未加工的原料。',
+            '§6通过物流方法，可从任意面，对石磨进行自动化输入输出。',
+            '§6已输入的原料不会被正常物流方式取出，所以无需担心会将原料也输出。',
+            '',
+            '§5§o开放式容器:§6石磨是开放式容器，可作为工作盆龙头的输出容器、动力臂的工作目标、动力钻6.0新刷石机制的底部承接容器。'
+        ]
+    },
+    {
+        items: 'create:mechanical_mixer',
+        base: '§6一种可以搅拌材料的作业元件。', 
+        desc: [
+            '§5“混合搅拌”：§6为机械动力专为动力搅拌器设计的配方。',
+            '',
+            '§5“自动搅拌：§6为自动适配的工作台无序合成配方（即在工作台中进行，对物品摆放位置没有要求的配方）。',
+            '',
+            '§5“自动酿造”：§6为自动适配的 §5酿造台§6 配方，并且可以用 1 个原料制作出 4 瓶药水（使用酿造台为 3 瓶）。',
+            '§6所有自动酿造配方都需要§5烈焰人燃烧室§6的加热。',
+            ''
+        ],
+        ctrlDesc: [
+            '§6有时机械工程师们会用刚搅拌完药水的搅拌器，去制作甜品，虽然有的时候会不怎么好运上一个人用来搅拌过中毒药水',
+            '§4“谁TM用这个酿造过剧毒药水？！”'
+        ]
+    },
+    {
+        items: 'create:cuckoo_clock',
+        base: '§6每到§5清晨§6和§5傍晚§6，都会准确的为工程师们报时',
+        desc: [
+            '§6可爱的布谷鸟时钟，内部使用了精致的精密构件'
+        ]
+    },
+    {
+        items: 'create:redstone_link',
+        base: '§6工程师们在无线电领域最跨时代的发明！',
+        desc: [
+            '§5无线红石信号终端让红石链接从从前需要红石物理连接',
+            '§5变成了“空气中皆是互不干扰的红石”！'
+        ]
+    },
+    {
+        items: 'create:linked_controller',
+        base: '§6工程师们的小发明',
+        desc: [
+            '§6无线红石遥控器的发明来源于一名红石工程师的脑洞发明',
+            '§5本质上它是由无线红石信号终端改造而来'
+        ]
+    },
+    {
+        items: 'create:mechanical_arm',
+        base: '§6灵活的物流方式，可以在工作范围内的任意两点间移动物品',
+        desc: [
+            '§e/****************  §6Σ§5 & §6∏§e *****************/',
+            '§5零幺二进，与或是非；丝玄之轴，数合万千。',
+            '§5差和微积，泛函变分；须臾方寸，算术奥艰。',
+            '§5机械之灵，欲释其怒；不朽精钢，待拭虏血。',
+            '§5万机之神，智识无边；佑吾克敌，雄霸宇间。',
+            '§e/***************** §6A§5 || §6Ω§e ****************/'
+        ],
+        ctrlDesc: [
+            '§7若播放音乐，机魂大悦！'
+        ]
+    },
+    {
+        items: 'create:extendo_grip',
+        base: '§6内部使用精密构件的机械假手，通过扣动扳机驱动内部的机械结构从而可以让使用者获得更远的交互距离',
+        desc: [
+            '§6有时使用者每次扣动扳机的力度与上次的力度不一致，可能导致内部机械结构的老化',
+            '§6推荐制作一些§e背罐§6储存压缩空气，用压缩空气来驱动这个装置'
+        ]
+    },
+    {
+        items: 'create:potato_cannon',
+        base: '§6一名工程师在茶余饭后做出的发射器玩具,有时内部因食物残渣可能导致内部结构老化',
+        desc: [
+            '§6可以发射各种各样的固体食物，但注意！',
+            '§4不要往其他人头上人射！',
+            '§6推荐制作一些§e背罐§6储存压缩空气，用压缩空气来驱动这个装置'
+        ],
+        ctrlDesc: [
+            '§6使用熟马铃薯可以附带火焰效果'
+        ]
+    },
+    {
+        items: 'create:shaft',
+        base: '§6传动杆是用于轴向传递旋转力的传动元件。',
+        desc: [
+            '§6传动杆是传递旋转力的最基本，最便宜的方式。在应力足够的情况下，传动杆能带动连接的其他轴向元件。'
+        ],
+        ctrlDesc: [
+            '§6用安山合金制作而成的最基础的传动元件',
+            '§6只要两端§5应力§6传导方向一致，它是不会崩碎的'
+        ]
+    },
+    {
+        items: 'create:mechanical_crafter',
+        base: '§6一种能够用于合成物品的作业元件',
+        desc: [
+            '§6工程师们用于合成大型复杂机械或者自动化合成所使用的元件',
+            '§6使用§5工作台§6加上动力源小小地改装了一下',
+            '§6内部除了有提供动力的元件以外，更添加了§5真空管§6用于简单的运算行为'
+        ],
+        ctrlDesc: [
+            '§7§o你似乎看到它的背面有一个小纸条',
+            '§7§o注：“大于3X3大小的动力合成器需要‘伸缩机械手’来辅助放入物品”'
+        ]
+    },
+    {
+        items: 'create:precision_mechanism',
+        base: '§6一种需要经过复杂工序才能制作的高级构件，内部的齿轮构造精密且复杂',
+        desc: [
+            '§6“是时候考验一下你的产线设计了。”',
+            '§6每一名初学工程师进阶必然要接触的物品,同时也是高级机械的材料'
+        ]
+    },
+    //Create:contrail
+    {
+        items: 'contrail:integrated_circuit',
+        base: '§6以§5青金合金板§6为底板，所制作的简单微电路控制器',
+        desc: [
+            '§6工程师使用红石，石英和金粒再配合机械手组装的元件，',
+            '§6限制于材料，这种微控制器只能控制简单的红石的行为，如果想控制动力元件还是有些困难'
+        ]
+    },
+    {
+        items: 'contrail:integrated_mechanism',
+        base: '§6在§5精密构件§6与§5集成电路§6为基本，所迭代的更高级的构件',
+        desc: [
+            ''
+        ]
+    },
+
 ]
 
-// ---------- 以下为注册代码, 一般无需修改 ----------
-ItemEvents.modifyTooltips(event => {
-    SHIFT_TOOLTIPS.forEach(entry => {
-        // 1. 普通描述: 不带条件, 任何时候都显示
-        if (entry.base) event.add(entry.items, entry.base)
-        // 2. 未按 Shift: 显示灰色提示行
-        event.add(entry.items, { shift: false }, Text.darkGray(entry.hint).italic(false))
-        // 3. 按住 Shift: 追加详细描述
-        event.add(entry.items, { shift: true }, entry.desc)
-    })
+// ---------- 条目检查: 自动跳过缺 items 的条目, 重复条目给出警告 ----------
+const VALID_ENTRIES = []
+const SEEN_ITEMS = {}
+SHIFT_TOOLTIPS.forEach((entry, index) => {
+    if (!entry || entry.items === undefined || entry.items === null || entry.items === '') {
+        console.warn(`[shift_tooltips] 第 ${index + 1} 个条目缺少 items 字段, 已跳过`)
+        return
+    }
+    if (entry.items === '*') {
+        console.warn('[shift_tooltips] 有条目使用了 * , 会给所有物品添加提示, 请确认这是你想要的')
+    }
+    const key = JSON.stringify(entry.items)
+    if (SEEN_ITEMS[key]) {
+        console.warn(`[shift_tooltips] items 为 ${key} 的条目出现了多次, 会导致提示显示两遍, 请删除重复条目`)
+    }
+    SEEN_ITEMS[key] = true
+    VALID_ENTRIES.push(entry)
 })
+
+// 默认提示语: 条目里不写 shiftHint / ctrlHint 时使用
+const DEFAULT_SHIFT_HINT = '按 Shift 查看更多信息'
+const DEFAULT_CTRL_HINT = '按 Ctrl 查看更多信息'
+
+// ---------- 以下为注册代码, 一般无需修改 ----------
+// 新版 KubeJS (2101.7.2+) 使用 modifyTooltips;
+// 旧版构建 (只有 ItemEvents.tooltip) 自动退回 addAdvanced 写法, 不会报错。
+function asLines(lines) {
+    return Array.isArray(lines) ? lines : [lines]
+}
+
+// 判断有没有实际内容 (空字符串/空数组算没有)
+function hasLines(lines) {
+    if (lines === undefined || lines === null) return false
+    return asLines(lines).some(line => line !== '' && line !== null && line !== undefined)
+}
+
+if (ItemEvents.modifyTooltips) {
+    ItemEvents.modifyTooltips(event => {
+        VALID_ENTRIES.forEach(entry => {
+            if (entry.base) event.add(entry.items, entry.base)
+            if (hasLines(entry.desc)) {
+                event.add(entry.items, { shift: false }, Text.darkGray(entry.shiftHint || DEFAULT_SHIFT_HINT).italic(false))
+                event.add(entry.items, { shift: true }, entry.desc)
+            }
+            if (hasLines(entry.ctrlDesc)) {
+                event.add(entry.items, { ctrl: false }, Text.darkGray(entry.ctrlHint || DEFAULT_CTRL_HINT).italic(false))
+                event.add(entry.items, { ctrl: true }, entry.ctrlDesc)
+            }
+        })
+    })
+} else {
+    ItemEvents.tooltip(tooltip => {
+        VALID_ENTRIES.forEach(entry => {
+            const ids = Array.isArray(entry.items) ? entry.items : [entry.items]
+            ids.forEach(id => {
+                tooltip.addAdvanced(id, (item, advanced, text) => {
+                    if (entry.base) asLines(entry.base).forEach(line => text.add(line))
+                    const hasDesc = hasLines(entry.desc)
+                    const hasCtrlDesc = hasLines(entry.ctrlDesc)
+                    const isShift = tooltip.shift === true
+                        || (typeof tooltip.isShift === 'function' && tooltip.isShift())
+                    const isCtrl = tooltip.ctrl === true
+                        || (typeof tooltip.isCtrl === 'function' && tooltip.isCtrl())
+                    if (isShift && hasDesc) {
+                        asLines(entry.desc).forEach(line => text.add(line))
+                    }
+                    if (isCtrl && hasCtrlDesc) {
+                        asLines(entry.ctrlDesc).forEach(line => text.add(line))
+                    }
+                    if (!isShift && hasDesc) {
+                        text.add(Text.darkGray(entry.shiftHint || DEFAULT_SHIFT_HINT).italic(false))
+                    }
+                    if (!isCtrl && hasCtrlDesc) {
+                        text.add(Text.darkGray(entry.ctrlHint || DEFAULT_CTRL_HINT).italic(false))
+                    }
+                })
+            })
+        })
+    })
+}
+
+console.info(`[shift_tooltips] 脚本已加载, 有效条目 ${VALID_ENTRIES.length} 个`)
