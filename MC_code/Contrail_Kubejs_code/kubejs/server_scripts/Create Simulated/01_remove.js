@@ -14,4 +14,5 @@ ServerEvents.recipes(event => {
     event.remove ({id:'aeronautics:propeller_bearing'});
     event.remove ({id:'aeronautics:gyroscopic_propeller_bearing'});
     event.remove ({id:'simulated:docking_connector'});
+    event.remove ({id:'simulated:redstone_accumulator'});
 });

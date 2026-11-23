@@ -16,6 +16,7 @@ ServerEvents.recipes (event =>{
     event.remove({output:'create:sequenced_gearshift'});
     event.remove({output:'create:stockpile_switch'});
     event.remove({output:'create:factory_gauge'});
+    event.remove({output:'create:pulse_timer'});
     event.remove({output:'create_connected:overstress_clutch'});
     event.remove({output:'create_connected:freewheel_clutch'});
     event.remove({output:'create_connected:kinetic_battery'});

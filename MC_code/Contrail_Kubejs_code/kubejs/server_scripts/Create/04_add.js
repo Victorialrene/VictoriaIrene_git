@@ -17,6 +17,7 @@ ServerEvents.recipes(event => {
     event.recipes.create.pressing(CreateItem.of('contrail:zinc_sheet',1.0),Ingredient.of('create:zinc_ingot'))
     event.recipes.create.pressing(CreateItem.of('contrail:shadow_steel_sheet',1.0),Ingredient.of('contrail:shadow_steel'))
     event.recipes.create.pressing(CreateItem.of('contrail:refined_radiance_sheet',1.0),Ingredient.of('contrail:fined_rediance'))
+    event.recipes.create.pressing(CreateItem.of('contrail:blaze_brass_sheet',1.0),Ingredient.of('contrail:blaze_gold'))
     event.recipes.create.sandpaper_polishing(CreateItem.of('contrail:polished_spectral_ruby',1.0),Ingredient.of('contrail:spectral_ruby'))
 
     event.shaped(Item.of('create:cuckoo_clock',1),[
@@ -381,6 +382,15 @@ ServerEvents.recipes(event => {
             Ingredient.of('minecraft:copper_ingot',3),
             Ingredient.of(['contrail:tin_ingot','mekanism:ingot_tin']),
             Ingredient.of('create:zinc_ingot')
+        ]
+    ).superheated()
+
+    event.recipes.create.mixing(
+        Item.of('contrail:chromatic_compound',2),
+        [
+            Ingredient.of('create:powdered_obsidian',4),
+            Ingredient.of('create:polished_rose_quartz',1),
+            Ingredient.of('contrail:polished_spectral_ruby',1)
         ]
     ).superheated()
 

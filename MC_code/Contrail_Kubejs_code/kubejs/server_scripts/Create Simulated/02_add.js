@@ -158,7 +158,7 @@ ServerEvents.recipes(event => {
     }).id("zako_lrene:gyroscopic_propeller_bearing");
 
     //红石累加器
-    event.shaqed(Item.of('simulated:redstone_accumulator',1),[
+    event.shaped(Item.of('simulated:redstone_accumulator',1),[
         ' A ',
         'BCD',
         'EEE'
