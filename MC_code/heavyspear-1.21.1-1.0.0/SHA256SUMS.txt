@@ -1,0 +1,1 @@
+d9c8e49720a6816e3afd57e94e63cee0cdbc18b4c311f126037a3532cab628ea  build/libs/heavyspear-1.21.1-1.0.0.jar

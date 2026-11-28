@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " H ",
+    " S "
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:heavy_core"
+    },
+    "S": {
+      "item": "minecraft:netherite_spear"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "heavyspear:heavy_spear"
+  }
+}

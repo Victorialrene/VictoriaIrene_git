@@ -1,0 +1,41 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "MIT"
+
+[[mods]]
+modId = "heavyspear"
+version = "${version}"
+displayName = "Heavy Spear"
+authors = "Heavy Spear contributors"
+logoFile = "icon.png"
+description = '''
+Adds the Heavy Spear: a netherite spear with a heavy-core counterweight.
+
+It keeps VanillaBackport's spear reach and charge attack, can receive the
+spear enchantment Lunge, and also accepts the mace enchantments Density,
+Breach and Wind Burst. Falling onto a target performs a mace smash attack.
+
+新增“重矛”：长矛的突刺与蓄力攻击，加上重锤的落地猛击；
+同时兼容长矛附魔（突刺）与重锤附魔（密度、破甲、风爆）。
+'''
+
+[[dependencies.heavyspear]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.heavyspear]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1,1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.heavyspear]]
+modId = "vanillabackport"
+type = "required"
+versionRange = "[1.2.2,1.3)"
+ordering = "AFTER"
+side = "BOTH"
